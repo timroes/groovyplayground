@@ -83,7 +83,7 @@ app.controller("EditorController", function($scope, $http, $q, ngDialog, localSt
 	$scope.showInfo = function() {
 		ngDialog.open({
 			template: 'views/info.html',
-			className: 'ngdialog-theme-default wide-dialog'
+			className: 'ngdialog-theme-default wide-dialog info-dialog'
 		});
 	};
 

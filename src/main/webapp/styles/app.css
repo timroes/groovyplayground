@@ -197,6 +197,16 @@ footer {
 	background-color: #B2DFDB;
 }
 
+.info-dialog a {
+	text-decoration: none;
+	color: #009688;
+}
+
+.info-dialog a:hover,
+.info-dialog a:focus {
+	color: #666;
+}
+
 .info-btn {
 	background: none;
 	border: none;
