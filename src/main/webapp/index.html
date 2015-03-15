@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="gp">
+<head>
+	<title>Groovy Playground</title>
+	<link href="styles/app.css" rel="stylesheet">
+	<link href="libs/ngDialog/ngDialog.min.css" rel="stylesheet">
+	<link href="libs/ngDialog/ngDialog-theme-default.min.css" rel="stylesheet">
+	<link href="assets/icons/css/fontello.css" rel="stylesheet">
+	<link href="assets/icons/css/animation.css" rel="stylesheet">
+	<link href='//fonts.googleapis.com/css?family=Roboto:300,700,400' rel='stylesheet' type='text/css'>
+</head>
+<body ng-controller="EditorController">
+	<header>
+		<h1 class="page-title">Groovy Playground</h1>
+		<a class="author-link" href="https://www.timroes.de" target="_blank">by Tim Roes</a>
+		<a href="https://github.com/timroes" target="_blank" title="GitHub Page" class="github-link"><i class="icon-github-circled"></i></a>
+	</header>
+
+	<main>
+		<div class="ui-ace" ui-ace="{
+  showPrintMargin: false,
+  showGutter: true,
+  theme:'chrome',
+  mode: 'groovy',
+  onLoad: aceLoaded
+}" ng-model="source"></div>
+		<div class="output">
+			<div class="output__header">
+				<h2 class="output__title">Output of Script</h2>
+					<div class="output__meta">
+					<i class="icon-spinner animate-spin" ng-show="isLoading"></i>
+					<div title="Execution time" class="output__time" ng-show="!isLoading && result.executionTime">
+						<i class="icon-clock"></i>
+						{{ result.executionTime }} ms
+					</div>
+				</div>
+			</div>
+			<div class="output__content" ng-class="{ 'output__content--interactive': interactiveOutput }">
+				<div class="output__line" ng-repeat="line in output">
+					<div class="output__item" ng-class="{ 'output__item--error': out.type === 'COMPILATION_ERROR' || out.type === 'EXCEPTION', 'output__item--linebreak': out.lineBreak }" ng-repeat="out in line"
+						ng-mouseover="highlightLine(out.line - 1)" ng-mouseleave="highlightLine()">
+						<i class="icon-attention" ng-if="out.type != 'PRINT'"></i>
+						<div class="output__message" ng-bind="out.message"></div>
+					</div>
+				</div>
+			</div>
+			<div class="return" ng-show="result.returnValue" title="Return value of script">
+				<i class="icon-return"></i>
+				<span class="return__value" ng-bind="result.returnValue"></span>
+				<span class="return__type" ng-bind="result.returnType"></span>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<button class="execute-button" ng-click="evaluate()" click-hotkey="ctrl+enter" title="Evaluate Script (Ctrl + Enter)">
+			<i class="icon-execute"></i> Execute
+		</button>
+
+		<button class="info-btn" ng-click="showInfo()"><i class="icon-info"></i> information</button>
+	</footer>
+
+	<script src="libs/ace-builds-1.1.8/src-min-noconflict/ace.js"></script>
+	<script src="libs/angular.min.js"></script>
+	<script src="libs/angular-animate.min.js"></script>
+	<script src="libs/ngDialog/ngDialog.min.js"></script>
+	<script src="libs/angular-local-storage.min.js"></script>
+	<script src="libs/ui-ace.min.js"></script>
+	<script src="scripts/app.js"></script>
+</body>
+</html>

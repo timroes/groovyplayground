@@ -1,0 +1,38 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath 'com.google.appengine:gradle-appengine-plugin:1.9.18'
+	}
+}
+
+apply plugin: 'war'
+apply plugin: 'appengine'
+
+appengine {
+	downloadSdk = true
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'com.google.guava:guava:18.0'
+	compile 'org.codehaus.groovy:groovy:2.4.1'
+	compile 'javax.servlet:servlet-api:2.5'
+	compile 'org.glassfish.jersey.core:jersey-server:2.16'
+	compile 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.16'
+	compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.16'
+	compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.18'
+	appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.18'
+}
+
+appengine {
+	downloadSdk = true
+	appcfg {
+		oauth2 = true
+	}
+}
