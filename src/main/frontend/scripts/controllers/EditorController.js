@@ -56,6 +56,8 @@ angular.module('gp')
 			if(reason.status === 418) {
 				$scope.interactiveOutput = false;
 				$scope.error = 'DEADLINE_EXCEEDED';
+			} else {
+				$scope.error = 'UNKNOWN';
 			}
 		}).finally(function() {
 			if(canceler === runningRequest) {
