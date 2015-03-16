@@ -193,11 +193,11 @@ footer {
 }
 
 .execute-button {
-	background-color: #DDD;
+	background-color: #009688;
+	color: #FFF;
 	border: none;
 	border-radius: 5px;
 	padding: 0.5em 0.8em;
-	color: #333;
 	margin: 0.5rem;
 	transition: background-color 0.3s ease-in-out;
 	outline: none;
@@ -206,7 +206,7 @@ footer {
 
 .execute-button:hover,
 .execute-button:focus {
-	background-color: #B2DFDB;
+	background-color: #80CBC4;
 }
 
 .info-dialog a {
