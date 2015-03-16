@@ -53,7 +53,11 @@ public class GroovyExecutor {
 		} catch(DeadlineExceededException ex) {
 			// TODO: Handle exception
 		} catch(Exception ex) {
-			result.addException(ex.getMessage(), causingLineInStacktrace(ex.getStackTrace()));
+			String output = ex.getMessage();
+			if(output == null || output.isEmpty()) {
+				output = String.format("%s has been thrown without a message.", ex.getClass().getName());
+			}
+			result.addException(output, causingLineInStacktrace(ex.getStackTrace()));
 		}
 
 		result.executionTime(System.currentTimeMillis() - startTime);
