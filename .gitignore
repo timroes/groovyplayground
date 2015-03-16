@@ -2,3 +2,4 @@
 .nb-gradle/
 build/
 private/
+node_modules/
