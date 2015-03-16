@@ -50,9 +50,12 @@ public class GroovyExecutor {
 				line = Integer.valueOf(matcher.group(1));
 			}
 			result.addCompilationException(ex.getMessage(), line);
-		} catch(DeadlineExceededException ex) {
-			// TODO: Handle exception
 		} catch(Exception ex) {
+			if(ex instanceof DeadlineExceededException) {
+				// We don't want to add DeadlineExceededException to output,
+				// but let the controller handle it
+				throw ex;
+			}
 			String output = ex.getMessage();
 			if(output == null || output.isEmpty()) {
 				output = String.format("%s has been thrown without a message.", ex.getClass().getName());

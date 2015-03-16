@@ -1,7 +1,10 @@
 package de.timroes.groovyplayground;
 
+import com.google.apphosting.api.DeadlineExceededException;
+import java.io.IOException;
 import javax.inject.Singleton;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -22,8 +25,14 @@ public class ScriptApi {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public ExecutionResult execute(@Context HttpServletRequest httpRequest, ExecutionRequest request) {	
-		return groovy.execute(request, httpRequest.getRemoteAddr());
+	public ExecutionResult execute(@Context HttpServletRequest httpRequest,
+			@Context HttpServletResponse response, ExecutionRequest request) throws IOException {
+		try {
+			return groovy.execute(request, httpRequest.getRemoteAddr());
+		} catch(DeadlineExceededException ex) {
+			response.sendError(418, "Deadline exceeded");
+			return null;
+		}
 	}
 	
 }

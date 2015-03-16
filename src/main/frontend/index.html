@@ -35,6 +35,11 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="output__error" ng-show="error" ng-switch="error">
+				<i class="icon-attention error-icon"></i>
+				<div ng-switch-when="DEADLINE_EXCEEDED">Your script took too long to execute, so execution got interrupted.</div>
+			</div>
 			<div class="output__content" ng-class="{ 'output__content--interactive': interactiveOutput }">
 				<div class="output__line" ng-repeat="line in output">
 					<div class="output__item" ng-class="{ 'output__item--error': out.type === 'COMPILATION_ERROR' || out.type === 'EXCEPTION', 'output__item--linebreak': out.lineBreak }" ng-repeat="out in line"

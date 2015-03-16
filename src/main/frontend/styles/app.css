@@ -95,6 +95,18 @@ main .ui-ace {
 	position: absolute;
 }
 
+.output__error {
+	margin-top: 2rem;
+	text-align: center;
+	color: #555;
+}
+
+.error-icon {
+	color: #C62828;
+	font-size: 70px;
+	opacity: 0.8;
+}
+
 .output__content {
 	padding: 1rem 0.5rem;
 	font-weight: 300;

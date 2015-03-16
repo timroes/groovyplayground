@@ -19,6 +19,7 @@ angular.module('gp')
 		localStorageService.set(STORAGE_KEY, $scope.source);
 		$scope.result = {};
 		$scope.output = [];
+		$scope.error = null;
 		$scope.isLoading = true;
 		
 		if(runningRequest) {
@@ -29,7 +30,8 @@ angular.module('gp')
 		
 		$http.post('/api/script', {
 			"source": $scope.source
-		}, { timeout: runningRequest.promise }).then(function(response) {
+		}, { timeout: runningRequest.promise })
+		.then(function(response) {
 			$scope.result = response.data;
 
 			var lines = [[]];
@@ -49,6 +51,12 @@ angular.module('gp')
 
 			$scope.output = lines;
 			$scope.interactiveOutput = true;
+		})
+		.catch(function(reason) {
+			if(reason.status === 418) {
+				$scope.interactiveOutput = false;
+				$scope.error = 'DEADLINE_EXCEEDED';
+			}
 		}).finally(function() {
 			if(canceler === runningRequest) {
 				runningRequest = null;
