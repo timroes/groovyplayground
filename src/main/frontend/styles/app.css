@@ -225,6 +225,9 @@ footer {
 	color: #666;
 	outline: none;
 	margin: 0.5rem;
+	font-size: 0.85rem;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .info-btn:focus,
@@ -234,6 +237,11 @@ footer {
 
 .wide-dialog .ngdialog-content {
 	width: 600px !important;
+}
+
+.footer__info {
+	display: flex;
+	align-items: center;
 }
 
 footer {

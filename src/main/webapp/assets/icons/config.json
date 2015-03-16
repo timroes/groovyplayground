@@ -13,6 +13,12 @@
       "src": "fontawesome"
     },
     {
+      "uid": "e15f0d620a7897e2035c18c80142f6d9",
+      "css": "link-ext",
+      "code": 59397,
+      "src": "fontawesome"
+    },
+    {
       "uid": "c76b7947c957c9b78b11741173c8349b",
       "css": "attention",
       "code": 59392,
@@ -34,12 +40,6 @@
       "uid": "598a5f2bcf3521d1615de8e1881ccd17",
       "css": "clock",
       "code": 59393,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "c5845105a87df2ee1999826d90622f6a",
-      "css": "paragraph",
-      "code": 59397,
       "src": "fontawesome"
     },
     {

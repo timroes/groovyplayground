@@ -11,7 +11,7 @@ var sources = {
 	libs: SRC + '/libs/**',
 	scripts: SRC + 'scripts/**/*.js',
 	styles: SRC + 'styles/**/*.css',
-	views: [SRC + '**/*.html', '!' + SRC + '*.html']
+	views: [SRC + '**/*.html', '!' + SRC + '*.html', '!' + SRC + 'assets/**/*.html']
 };
 
 gulp.task('assets', function() {
