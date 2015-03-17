@@ -6,7 +6,7 @@ var BUILD = 'src/main/webapp/';
 var SRC = 'src/main/frontend/';
 
 var sources = {
-	assets: SRC + 'assets/**',
+	assets: [SRC + 'assets/**', SRC + '*.txt' ],
 	html: SRC + '*.html',
 	libs: SRC + '/libs/**',
 	scripts: SRC + 'scripts/**/*.js',
