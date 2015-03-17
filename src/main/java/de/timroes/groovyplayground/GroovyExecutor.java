@@ -50,7 +50,7 @@ public class GroovyExecutor {
 				line = Integer.valueOf(matcher.group(1));
 			}
 			result.addCompilationException(ex.getMessage(), line);
-		} catch(Exception ex) {
+		} catch(Throwable ex) {
 			if(ex instanceof DeadlineExceededException) {
 				// We don't want to add DeadlineExceededException to output,
 				// but let the controller handle it
