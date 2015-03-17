@@ -85,6 +85,36 @@ angular.module('gp')
 		}
 	};
 
+	$scope.createGist = function() {
+		$scope.gistCreating = true;
+		$http.post('https://api.github.com/gists', {
+			'description': "",
+			'public': false,
+			'files': {
+				'script.groovy': {
+					'content': $scope.source
+				}
+			}
+		})
+		.then(function(result) {
+			ngDialog.open({
+				template: 'views/gistcreated.html',
+				data: {
+					url: result.data.html_url
+				},
+				className: 'ngdialog-theme-default gist-dialog'
+			});
+		})
+		.catch(function(reason) {
+			ngDialog.open({
+				template: 'views/gisterror.html'
+			});
+		})
+		.finally(function() {
+			$scope.gistCreating = false;
+		});
+	};
+
 	$scope.showInfo = function() {
 		ngDialog.open({
 			template: 'views/info.html',

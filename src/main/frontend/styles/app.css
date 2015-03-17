@@ -193,8 +193,8 @@ footer {
 	border-top: 2px solid #009688;
 }
 
-.execute-button {
-	background-color: #009688;
+.footer-button {
+	background-color: #999;
 	color: #FFF;
 	border: none;
 	border-radius: 5px;
@@ -203,6 +203,15 @@ footer {
 	transition: background-color 0.3s ease-in-out;
 	outline: none;
 	font-size: 1rem;
+}
+
+.footer-button:hover,
+.footer-button:focus {
+	background-color: #BBB;
+}
+
+.execute-button {
+	background-color: #009688;
 }
 
 .execute-button:hover,
@@ -243,6 +252,23 @@ footer {
 .footer__info {
 	display: flex;
 	align-items: center;
+}
+
+.gist-dialog {
+	text-align: center;
+}
+
+.gist-link {
+	display: block;
+	font-size: 1.4rem;
+	margin: 1.5rem 0 0;
+	color: #009688;
+	text-decoration: none
+}
+
+.gist-link:hover,
+.gist-link:focus {
+	color: #555;
 }
 
 footer {
