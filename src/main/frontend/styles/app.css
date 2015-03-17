@@ -163,6 +163,7 @@ main .ui-ace {
 }
 
 .output__item--error {
+	font-family: 'Source Code Pro', monospace;
 	display: flex;
 	background-color: #C62828;
 	color: #EEE;
