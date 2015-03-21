@@ -210,8 +210,8 @@ footer {
 	font-size: 1rem;
 }
 
-.footer-button:hover,
-.footer-button:focus,
+.footer-button:hover:not([disabled]),
+.footer-button:focus:not([disabled]),
 .footer-button[disabled] {
 	background-color: #BBB;
 }

@@ -49,6 +49,7 @@ angular.module('gp')
 				lines.splice(-1);
 			}
 
+			$scope.error = null;
 			$scope.output = lines;
 			$scope.interactiveOutput = true;
 		})
