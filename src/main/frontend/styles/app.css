@@ -206,7 +206,8 @@ footer {
 }
 
 .footer-button:hover,
-.footer-button:focus {
+.footer-button:focus,
+.footer-button[disabled] {
 	background-color: #BBB;
 }
 
