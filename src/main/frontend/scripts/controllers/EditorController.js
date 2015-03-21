@@ -7,7 +7,7 @@ angular.module('gp')
 	var highlights = [];
 	var cancelSourceWatch;
 
-	$scope.source = localStorageService.get(STORAGE_KEY);
+	$scope.source = localStorageService.get(STORAGE_KEY) || '';
 
 	var editorDefer = $q.defer();
 
