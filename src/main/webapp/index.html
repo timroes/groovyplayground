@@ -61,24 +61,26 @@
 				</div>
 			</div>
 
-			<div class="output__error" ng-show="error" ng-switch="error">
-				<i class="icon-attention error-icon"></i>
-				<div ng-switch-when="DEADLINE_EXCEEDED">Your script took too long to execute, so execution got interrupted.</div>
-				<div ng-switch-when="UNKNOWN">An unknown error occurred.</div>
-			</div>
-			<div class="output__content" ng-class="{ 'output__content--interactive': interactiveOutput }">
-				<div class="output__line" ng-repeat="line in output">
-					<div class="output__item" ng-class="{ 'output__item--error': out.type === 'COMPILATION_ERROR' || out.type === 'EXCEPTION', 'output__item--linebreak': out.lineBreak }" ng-repeat="out in line"
-						ng-mouseover="highlightLine(out.line - 1)" ng-mouseleave="highlightLine()">
-						<i class="icon-attention" ng-if="out.type != 'PRINT'"></i>
-						<div class="output__message" ng-bind="out.message"></div>
+			<div class="output__panel">
+				<div class="output__error" ng-show="error" ng-switch="error">
+					<i class="icon-attention error-icon"></i>
+					<div ng-switch-when="DEADLINE_EXCEEDED">Your script took too long to execute, so execution got interrupted.</div>
+					<div ng-switch-when="UNKNOWN">An unknown error occurred.</div>
+				</div>
+				<div class="output__content" ng-class="{ 'output__content--interactive': interactiveOutput }">
+					<div class="output__line" ng-repeat="line in output">
+						<div class="output__item" ng-class="{ 'output__item--error': out.type === 'COMPILATION_ERROR' || out.type === 'EXCEPTION', 'output__item--linebreak': out.lineBreak }" ng-repeat="out in line"
+							ng-mouseover="highlightLine(out.line - 1)" ng-mouseleave="highlightLine()">
+							<i class="icon-attention" ng-if="out.type != 'PRINT'"></i>
+							<div class="output__message" ng-bind="out.message"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="return" ng-show="result.returnValue" title="Return value of script">
-				<i class="icon-return"></i>
-				<span class="return__value" ng-bind="result.returnValue"></span>
-				<span class="return__type" ng-bind="result.returnType"></span>
+				<div class="return" ng-show="result.returnValue" title="Return value of script">
+					<i class="icon-return"></i>
+					<span class="return__value" ng-bind="result.returnValue"></span>
+					<span class="return__type" ng-bind="result.returnType"></span>
+				</div>
 			</div>
 		</div>
 	</main>

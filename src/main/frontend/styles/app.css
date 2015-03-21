@@ -15,6 +15,7 @@ body {
 }
 
 header {
+	flex: 0 0 auto;
 	background-color: #272822;
 	color: #EEE;
 	padding: 0.4em 1em;
@@ -48,7 +49,7 @@ header a:focus {
 }
 
 main {
-	flex: 1 1 auto;
+	flex: 1 1 0;
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
@@ -62,10 +63,13 @@ main .ui-ace {
 	font-size: 1rem;
 }
 
+.ace_scroller {
+	box-shadow: -1px 0 8px #AAA inset;
+}
+
 .output {
-	z-index: 5;
 	background-color: #F6F6F6;
-	box-shadow: -1px 0 8px #AAA;
+	overflow: auto;
 }
 
 .output__header {
@@ -80,7 +84,7 @@ main .ui-ace {
 	font-weight: 300;
 	font-size: 1rem;
 	color: inherit;
-	flex: 1 1 auto;
+	flex: 1 1 0;
 	line-height: 1.6;
 	text-overflow: ellipsis;
 }
@@ -190,6 +194,7 @@ main .ui-ace {
 }
 
 footer {
+	flex: 0 0 auto;
 	border-top: 2px solid #009688;
 }
 
