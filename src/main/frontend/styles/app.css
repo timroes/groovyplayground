@@ -157,7 +157,7 @@ main .ui-ace {
 }
 
 .output__message {
-	white-space: pre;
+	white-space: pre-wrap;
 }
 
 .output__newline {
