@@ -194,17 +194,22 @@ main .ui-ace {
 }
 
 footer {
+	display: flex;
+	justify-content: space-between;
 	flex: 0 0 auto;
 	border-top: 2px solid #009688;
+	font-size: 0;
+}
+
+.footer__actions {
+	display: flex;
 }
 
 .footer-button {
 	background-color: #999;
 	color: #FFF;
 	border: none;
-	border-radius: 5px;
-	padding: 0.5em 0.8em;
-	margin: 0.5rem;
+	padding: 0.8em 1em;
 	transition: background-color 0.3s ease-in-out;
 	outline: none;
 	font-size: 1rem;
@@ -275,11 +280,6 @@ footer {
 .gist-link:hover,
 .gist-link:focus {
 	color: #555;
-}
-
-footer {
-	display: flex;
-	justify-content: space-between;
 }
 
 p {
