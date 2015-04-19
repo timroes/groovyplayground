@@ -1,0 +1,10 @@
+<h2>Error</h2>
+<div ng-switch="ngDialogData.error">
+	<p ng-switch-when="not_found">Could not find the Gist you are trying to load.</p>
+	<p ng-switch-when="no_files">The loaded gist doesn't contain any files that could be loaded into the playground.</p>
+	<p ng-switch-when="limit_exceeded">
+		You have exceeded the GitHub limit for your IP address.
+		Your limit will be reset at {{ ngDialogData.data.reset | date:'H:mm' }}.
+	</p>
+	<p ng-switch-when="generic">An unknown error occured. Please try again later.</p>
+</div>

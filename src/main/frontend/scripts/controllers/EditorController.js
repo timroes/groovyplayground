@@ -1,5 +1,5 @@
 angular.module('gp')
-.controller("EditorController", function($scope, $http, $q, ngDialog, localStorageService) {
+.controller("EditorController", function($scope, $http, $q, $location, gists, ngDialog, localStorageService) {
 
 	var STORAGE_KEY = 'source';
 	var runningRequest;
@@ -7,7 +7,54 @@ angular.module('gp')
 	var highlights = [];
 	var cancelSourceWatch;
 
+	var errorDialog = function(error, data) {
+		ngDialog.open({
+			template: 'views/errorDialog.html',
+			data: {
+				error: error,
+				data: data
+			},
+			className: 'ngdialog-theme-default error-dialog'
+		});
+	};
+
+	var gistLoaded = function(gist) {
+		if(Object.keys(gist.files).length === 0) {
+			errorDialog('no_files');
+		} else {
+			$scope.source = '';
+			angular.forEach(gist.files, function(file) {
+				if(gist.files.length > 1) {
+					$scope.source += '// ' + file.filename + '\n';
+				}
+				$scope.source += file.content;
+				$scope.source += '\n\n';
+			});
+			$location.search('load', gist.id);
+		}
+	};
+
+	var handleGistError = function(reason) {
+		if(reason.status === 404) {
+			errorDialog('not_found');
+		} else if(reason.status === 403) {
+			errorDialog('limit_exceeded', { reset: reason.headers('X-RateLimit-Reset') * 1000 });
+		} else {
+			errorDialog('generic');
+		}
+	};
+
+	var loadGist = function(id) {
+		gists.byId(id).then(gistLoaded, handleGistError);
+	};
+
 	$scope.source = localStorageService.get(STORAGE_KEY) || '';
+
+	// Try to load a gist from the URL parameter
+	var params = $location.search();
+	if(angular.isString(params.load) && params.load.length > 0) {
+		loadGist(params.load);
+	}
 
 	var editorDefer = $q.defer();
 
@@ -16,6 +63,7 @@ angular.module('gp')
 	};
 
 	$scope.evaluate = function() {
+		$location.search('load', null);
 		localStorageService.set(STORAGE_KEY, $scope.source);
 		$scope.result = {};
 		$scope.output = [];
@@ -73,6 +121,17 @@ angular.module('gp')
 		editor.focus();
 	};
 
+	$scope.gistLoadDialog = function() {
+		ngDialog.open({
+			template: 'views/gistLoad.html',
+			className: 'ngdialog-theme-default wide-dialog'
+		}).closePromise.then(function(close) {
+			if(close.value && close.value[0] != '$') {
+				loadGist(close.value);
+			}
+		});
+	};
+
 	$scope.highlightLine = function(line) {
 		if($scope.interactiveOutput) {
 			withEditor().then(function(editor) {
@@ -106,11 +165,7 @@ angular.module('gp')
 				className: 'ngdialog-theme-default gist-dialog'
 			});
 		})
-		.catch(function(reason) {
-			ngDialog.open({
-				template: 'views/gisterror.html'
-			});
-		})
+		.catch(handleGistError)
 		.finally(function() {
 			$scope.gistCreating = false;
 		});

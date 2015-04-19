@@ -1,0 +1,7 @@
+<h2>Load from Gist</h2>
+<p>Enter the id of a GitHub Gist (the last part in its URL), that you want to load.</p>
+<p>All files in this Gist will be loaded into the playground.</p>
+<form ng-submit="closeThisDialog(gistId)" class="gist-input">
+	<input type="text" placeholder="Gist Id" ng-model="gistId" class="gist-input__text">
+	<button class="gist-input__button"><i class="icon-download-cloud"></i> Load</button>
+</form>

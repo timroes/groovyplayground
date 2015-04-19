@@ -215,6 +215,10 @@ footer {
 	font-size: 1rem;
 }
 
+.footer-button + .footer-button {
+	margin-left: 1px;
+}
+
 .footer-button:hover:not([disabled]),
 .footer-button:focus:not([disabled]),
 .footer-button[disabled] {
@@ -263,6 +267,42 @@ footer {
 .footer__info {
 	display: flex;
 	align-items: center;
+}
+
+.gist-input {
+	display: flex;
+	flex-direction: row;
+	margin: 1rem 0;
+}
+
+.gist-input__text {
+	flex: 1 1 0;
+	border: none;
+	border-bottom: 1px solid #999;
+	background-color: transparent;
+	font-size: 100%;
+	color: #444;
+	padding: 0.1em 0.4em;
+}
+
+.gist-input__text:focus {
+	border-bottom-color: #009688;
+	color: #009688;
+}
+
+.gist-input__button {
+	flex: 0 0 auto;
+	margin-left: 1rem;
+	background-color: transparent;
+	border: none;
+	padding: 0.4em;
+	cursor: pointer;
+	font-size: 100%;
+	color: #444;
+}
+.gist-input__button:hover,
+.gist-input__button:focus {
+	color: #009688;
 }
 
 .gist-dialog {
