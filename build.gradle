@@ -19,9 +19,15 @@ repositories {
 	mavenCentral()
 }
 
+def versions = [
+	groovy: '2.4.3'
+]
+
 dependencies {
 	compile 'com.google.guava:guava:18.0'
-	compile 'org.codehaus.groovy:groovy:2.4.1'
+	compile "org.codehaus.groovy:groovy:${versions.groovy}"
+	compile "org.codehaus.groovy:groovy-json:${versions.groovy}"
+	compile "org.codehaus.groovy:groovy-xml:${versions.groovy}"
 	compile 'javax.servlet:servlet-api:2.5'
 	compile 'org.glassfish.jersey.core:jersey-server:2.16'
 	compile 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.16'
