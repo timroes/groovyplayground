@@ -69,13 +69,13 @@ angular.module('gp')
 		$scope.output = [];
 		$scope.error = null;
 		$scope.isLoading = true;
-		
+
 		if(runningRequest) {
 			runningRequest.resolve();
 		}
 		var canceler = $q.defer();
 		runningRequest = canceler;
-		
+
 		$http.post('/api/script', {
 			"source": $scope.source
 		}, { timeout: runningRequest.promise })
@@ -169,6 +169,10 @@ angular.module('gp')
 		.finally(function() {
 			$scope.gistCreating = false;
 		});
+	};
+
+	$scope.clear = function() {
+		$scope.source = '';
 	};
 
 	$scope.showInfo = function() {
