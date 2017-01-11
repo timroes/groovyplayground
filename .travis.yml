@@ -1,0 +1,10 @@
+language: java
+jdk:
+- oraclejdk7
+before_install:
+- openssl aes-256-cbc -K $encrypted_8e672c7177f4_key -iv $encrypted_8e672c7177f4_iv
+  -in client-secret.json.enc -out client-secret.json -d
+deploy:
+  provider: gae
+  keyfile: client-secret.json
+  project: groovy-playground
