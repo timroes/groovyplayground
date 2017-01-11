@@ -3,3 +3,4 @@
 build/
 private/
 node_modules/
+client-secret.json
