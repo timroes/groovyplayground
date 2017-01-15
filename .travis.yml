@@ -8,4 +8,3 @@ deploy:
   provider: gae
   keyfile: client-secret.json
   project: groovy-playground
-  verbosity: debug
